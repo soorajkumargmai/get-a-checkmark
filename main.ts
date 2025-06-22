@@ -8,7 +8,7 @@ async function indexHandler() {
   });
 }
 
-// Function to serve validation.html with style.css
+// Function to serve validation.html
 async function validationHandler() {
   const html = await Deno.readTextFile("./validation.html");
   return new Response(html, {
@@ -24,11 +24,11 @@ async function confirmHandler() {
   });
 }
 
-// Function to serve style.css
-async function styleHandler() {
-  const css = await Deno.readTextFile("./style.css");
-  return new Response(css, {
-    headers: { "content-type": "text/css" },
+// Function to serve final-page.html
+async function finalPageHandler() {
+  const html = await Deno.readTextFile("./final-page.html");
+  return new Response(html, {
+    headers: { "content-type": "text/html" },
   });
 }
 
@@ -36,17 +36,11 @@ async function styleHandler() {
 const handler = (req: Request) => {
   const url = new URL(req.url);
 
-  if (url.pathname === "/") {
-    return indexHandler(); // Serve the home page (index.html)
-  } else if (url.pathname === "/validation.html") {
-    return validationHandler(); // Serve the validation page (validation.html)
-  } else if (url.pathname === "/confirm.html") {
-    return confirmHandler(); // Serve the confirm page (confirm.html)
-  } else if (url.pathname === "/style.css") {
-    return styleHandler(); // Serve the CSS file
-  }
+  if (url.pathname === "/") return indexHandler();
+  if (url.pathname === "/validation.html") return validationHandler();
+  if (url.pathname === "/confirm.html") return confirmHandler();
+  if (url.pathname === "/final-page.html") return finalPageHandler();
 
-  // Default handler for unknown routes
   return new Response("Page Not Found", { status: 404 });
 };
 
